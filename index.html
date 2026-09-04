@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RideGo - Bike & Scooter Rentals</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+
+        :root {
+            --primary: #EA9000;
+            --dark: #111111;
+            --light: #f7f7f7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #fff;
+            color: #222;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            padding: 15px 0;
+            background: #111;
+        }
+
+        .navbar-brand {
+            font-size: 28px;
+            font-weight: 800;
+            color: white !important;
+        }
+
+        .navbar-brand span {
+            color: var(--primary);
+        }
+
+        .nav-link {
+            color: white !important;
+            margin: 0 10px;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            color: var(--primary) !important;
+        }
+
+        .btn-orange {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 25px;
+            font-weight: 600;
+        }
+
+        .btn-orange:hover {
+            background: #cf7d00;
+            color: white;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            height: 600px;
+        }
+
+        .hero .carousel-item {
+            height: 600px;
+            background: #222;
+        }
+
+        .hero img {
+            height: 600px;
+            width: 100%;
+            object-fit: cover;
+            opacity: 0.55;
+        }
+
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            transform: translateY(-50%);
+            color: white;
+            max-width: 600px;
+        }
+
+        .hero-content h1 {
+            font-size: 60px;
+            font-weight: 800;
+        }
+
+        .hero-content h1 span {
+            color: var(--primary);
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            margin: 20px 0;
+        }
+
+        /* ================= SEARCH ================= */
+
+        .search-box {
+            margin-top: -50px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .search-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.15);
+        }
+
+        .search-card label {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 7px;
+        }
+
+        .search-card input,
+        .search-card select {
+            height: 48px;
+            border-radius: 8px;
+        }
+
+        /* ================= SECTION ================= */
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 40px;
+            font-weight: 800;
+        }
+
+        .section-title h2 span {
+            color: var(--primary);
+        }
+
+        .section-title p {
+            color: #777;
+        }
+
+        /* ================= VEHICLE CARDS ================= */
+
+        .vehicle-card {
+            border: none;
+            border-radius: 18px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            transition: 0.3s;
+            height: 100%;
+        }
+
+        .vehicle-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .vehicle-img {
+            height: 230px;
+            background: #ddd;
+            overflow: hidden;
+        }
+
+        .vehicle-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .vehicle-body {
+            padding: 22px;
+        }
+
+        .vehicle-body h4 {
+            font-weight: 700;
+        }
+
+        .vehicle-type {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .vehicle-info {
+            display: flex;
+            justify-content: space-between;
+            margin: 18px 0;
+            color: #555;
+        }
+
+        .vehicle-info i {
+            color: var(--primary);
+        }
+
+        .price {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .price small {
+            font-size: 13px;
+            color: #777;
+            font-weight: normal;
+        }
+
+        /* ================= FEATURES ================= */
+
+        .feature-box {
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: #fff1d9;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: auto;
+            border-radius: 50%;
+            font-size: 30px;
+        }
+
+        .feature-box h4 {
+            margin-top: 20px;
+            font-weight: 700;
+        }
+
+        .feature-box p {
+            color: #777;
+        }
+
+        /* ================= REVIEWS ================= */
+
+        .reviews {
+            background: #f7f7f7;
+        }
+
+        .review-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+            height: 100%;
+        }
+
+        .stars {
+            color: #f5a623;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .review-card p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .customer {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .customer-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #ddd;
+            margin-right: 15px;
+            overflow: hidden;
+        }
+
+        .customer-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .customer h6 {
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .customer small {
+            color: #777;
+        }
+
+        /* ================= CTA ================= */
+
+        .cta {
+            background: #111;
+            color: white;
+            padding: 70px 20px;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 42px;
+            font-weight: 800;
+        }
+
+        .cta h2 span {
+            color: var(--primary);
+        }
+
+        .cta p {
+            color: #bbb;
+            margin: 20px auto 30px;
+            max-width: 600px;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #090909;
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        footer h4 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        footer p,
+        footer li {
+            color: #aaa;
+        }
+
+        footer ul {
+            padding: 0;
+            list-style: none;
+        }
+
+        footer li {
+            margin-bottom: 10px;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 22px;
+            margin-right: 15px;
+        }
+
+        .social-icons a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
+            border-top: 1px solid #333;
+            margin-top: 30px;
+            padding-top: 20px;
+            text-align: center;
+            color: #777;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media(max-width: 768px) {
+
+            .hero,
+            .hero .carousel-item,
+            .hero img {
+                height: 500px;
+            }
+
+            .hero-content {
+                left: 7%;
+                right: 7%;
+            }
+
+            .hero-content h1 {
+                font-size: 42px;
+            }
+
+            .hero-content p {
+                font-size: 16px;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .section-title h2 {
+                font-size: 32px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+
+        <a class="navbar-brand" href="#">
+            Ride<span>Go</span>
+        </a>
+
+        <button class="navbar-toggler"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#vehicles">Vehicles</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#reviews">Reviews</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact">Contact</a>
+                </li>
+
+                <li class="nav-item ms-lg-3">
+                    <a href="#" class="btn btn-orange">
+                        Login
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+</nav>
+
+
+<!-- ================= HERO CAROUSEL ================= -->
+
+<section class="hero">
+
+    <div id="heroCarousel"
+         class="carousel slide carousel-fade"
+         data-bs-ride="carousel">
+
+        <div class="carousel-indicators">
+
+            <button type="button"
+                    data-bs-target="#heroCarousel"
+                    data-bs-slide-to="0"
+                    class="active"></button>
+
+            <button type="button"
+                    data-bs-target="#heroCarousel"
+                    data-bs-slide-to="1"></button>
+
+            <button type="button"
+                    data-bs-target="#heroCarousel"
+                    data-bs-slide-to="2"></button>
+
+        </div>
+
+        <div class="carousel-inner">
+
+            <!-- SLIDE 1 -->
+
+            <div class="carousel-item active">
+
+                <!-- Replace this image -->
+                <img src="car2.png"
+                     alt="Bike Rental">
+
+                <div class="hero-content">
+
+                    <h1>
+                        Your Ride.<br>
+                        Your <span>Freedom.</span>
+                    </h1>
+
+                    <p>
+                        Rent premium bikes and scooters
+                        and explore the city your way.
+                    </p>
+
+                    <a href="#vehicles"
+                       class="btn btn-orange">
+                        Explore Vehicles
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- SLIDE 2 -->
+
+            <div class="carousel-item">
+
+                <!-- Replace this image -->
+                <img src="car1.png"
+                     alt="Scooter Rental">
+
+                <div class="hero-content">
+
+                    <h1>
+                        Ride More.<br>
+                        Pay <span>Less.</span>
+                    </h1>
+
+                    <p>
+                        Affordable scooters for your
+                        everyday adventures.
+                    </p>
+
+                    <a href="#vehicles"
+                       class="btn btn-orange">
+                        Rent Now
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- SLIDE 3 -->
+
+            <div class="carousel-item">
+
+                <!-- Replace this image -->
+                <img src="car3.png"
+                     alt="Adventure Bike">
+
+                <div class="hero-content">
+
+                    <h1>
+                        Discover.<br>
+                        <span>Adventure.</span>
+                    </h1>
+
+                    <p>
+                        Take your journey beyond the
+                        ordinary.
+                    </p>
+
+                    <a href="#vehicles"
+                       class="btn btn-orange">
+                        Start Riding
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <button class="carousel-control-prev"
+                type="button"
+                data-bs-target="#heroCarousel"
+                data-bs-slide="prev">
+
+            <span class="carousel-control-prev-icon"></span>
+
+        </button>
+
+        <button class="carousel-control-next"
+                type="button"
+                data-bs-target="#heroCarousel"
+                data-bs-slide="next">
+
+            <span class="carousel-control-next-icon"></span>
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ================= SEARCH ================= -->
+
+<section class="search-box">
+
+    <div class="container">
+
+        <div class="search-card">
+
+            <div class="row g-3 align-items-end">
+
+                <div class="col-md-3">
+
+                    <label>Pickup Location</label>
+
+                    <input type="text"
+                           class="form-control"
+                           placeholder="Enter location">
+
+                </div>
+
+                <div class="col-md-2">
+
+                    <label>Pickup Date</label>
+
+                    <input type="date"
+                           class="form-control">
+
+                </div>
+
+                <div class="col-md-2">
+
+                    <label>Return Date</label>
+
+                    <input type="date"
+                           class="form-control">
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <label>Vehicle Type</label>
+
+                    <select class="form-select">
+
+                        <option>All Vehicles</option>
+                        <option>Bikes</option>
+                        <option>Scooters</option>
+                        <option>Electric Vehicles</option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-2">
+
+                    <button class="btn btn-orange w-100">
+                        <i class="bi bi-search"></i>
+                        Search
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= VEHICLES ================= -->
+
+<section class="section" id="vehicles">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>
+                Choose Your <span>Ride</span>
+            </h2>
+
+            <p>
+                Find the perfect bike or scooter for your journey.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+
+            <!-- VEHICLE 1 -->
+
+            <div class="col-lg-4 col-md-6">
+
+                <div class="vehicle-card">
+
+                    <div class="vehicle-img">
+
+                        <!-- Replace image -->
+                        <img src="royal.png"
+                             alt="Royal Enfield">
+
+                    </div>
+
+                    <div class="vehicle-body">
+
+                        <span class="vehicle-type">
+                            Premium Bike
+                        </span>
+
+                        <h4>
+                            Royal Enfield Classic
+                        </h4>
+
+                        <div class="vehicle-info">
+
+                            <span>
+                                <i class="bi bi-speedometer2"></i>
+                                350 CC
+                            </span>
+
+                            <span>
+                                <i class="bi bi-gear"></i>
+                                Manual
+                            </span>
+
+                            <span>
+                                <i class="bi bi-person"></i>
+                                2 Seats
+                            </span>
+
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center">
+
+                            <div class="price">
+                                ₹899
+                                <small>/ day</small>
+                            </div>
+
+                            <a href="#" class="btn btn-orange">
+                                Rent Now
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- VEHICLE 2 -->
+
+            <div class="col-lg-4 col-md-6">
+
+                <div class="vehicle-card">
+
+                    <div class="vehicle-img">
+
+                        <!-- Replace image -->
+                        <img src="activa.png"
+                             alt="Activa">
+
+                    </div>
+
+                    <div class="vehicle-body">
+
+                        <span class="vehicle-type">
+                            Scooter
+                        </span>
+
+                        <h4>
+                            Honda Activa 6G
+                        </h4>
+
+                        <div class="vehicle-info">
+
+                            <span>
+                                <i class="bi bi-speedometer2"></i>
+                                110 CC
+                            </span>
+
+                            <span>
+                                <i class="bi bi-gear"></i>
+                                Automatic
+                            </span>
+
+                            <span>
+                                <i class="bi bi-person"></i>
+                                2 Seats
+                            </span>
+
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center">
+
+                            <div class="price">
+                                ₹499
+                                <small>/ day</small>
+                            </div>
+
+                            <a href="#" class="btn btn-orange">
+                                Rent Now
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- VEHICLE 3 -->
+
+            <div class="col-lg-4 col-md-6">
+
+                <div class="vehicle-card">
+
+                    <div class="vehicle-img">
+
+                        <!-- Replace image -->
+                        <img src="mt.png"
+                             alt="MT 15">
+
+                    </div>
+
+                    <div class="vehicle-body">
+
+                        <span class="vehicle-type">
+                            Sports Bike
+                        </span>
+
+                        <h4>
+                            Yamaha MT-15
+                        </h4>
+
+                        <div class="vehicle-info">
+
+                            <span>
+                                <i class="bi bi-speedometer2"></i>
+                                155 CC
+                            </span>
+
+                            <span>
+                                <i class="bi bi-gear"></i>
+                                Manual
+                            </span>
+
+                            <span>
+                                <i class="bi bi-person"></i>
+                                2 Seats
+                            </span>
+
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center">
+
+                            <div class="price">
+                                ₹799
+                                <small>/ day</small>
+                            </div>
+
+                            <a href="#" class="btn btn-orange">
+                                Rent Now
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- VEHICLE 4 -->
+
+            <div class="col-lg-4 col-md-6">
+
+                <div class="vehicle-card">
+
+                    <div class="vehicle-img">
+
+                        <img src="access.png"
+                             alt="Access">
+
+                    </div>
+
+                    <div class="vehicle-body">
+
+                        <span class="vehicle-type">
+                            Scooter
+                        </span>
+
+                        <h4>
+                            Suzuki Access 125
+                        </h4>
+
+                        <div class="vehicle-info">
+
+                            <span>
+                                <i class="bi bi-speedometer2"></i>
+                                125 CC
+                            </span>
+
+                            <span>
+                                <i class="bi bi-gear"></i>
+                                Automatic
+                            </span>
+
+                            <span>
+                                <i class="bi bi-person"></i>
+                                2 Seats
+                            </span>
+
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center">
+
+                            <div class="price">
+                                ₹549
+                                <small>/ day</small>
+                            </div>
+
+                            <a href="#" class="btn btn-orange">
+                                Rent Now
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- VEHICLE 5 -->
+
+            <div class="col-lg-4 col-md-6">
+
+                <div class="vehicle-card">
+
+                    <div class="vehicle-img">
+
+                        <img src="pulsar.png"
+                             alt="Pulsar">
+
+                    </div>
+
+                    <div class="vehicle-body">
+
+                        <span class="vehicle-type">
+                            Street Bike
+                        </span>
+
+                        <h4>
+                            Bajaj Pulsar NS200
+                        </h4>
+
+                        <div class="vehicle-info">
+
+                            <span>
+                                <i class="bi bi-speedometer2"></i>
+                                200 CC
+                            </span>
+
+                            <span>
+                                <i class="bi bi-gear"></i>
+                                Manual
+                            </span>
+
+                            <span>
+                                <i class="bi bi-person"></i>
+                                2 Seats
+                            </span>
+
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center">
+
+                            <div class="price">
+                                ₹699
+                                <small>/ day</small>
+                            </div>
+
+                            <a href="#" class="btn btn-orange">
+                                Rent Now
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- VEHICLE 6 -->
+
+            <div class="col-lg-4 col-md-6">
+
+                <div class="vehicle-card">
+
+                    <div class="vehicle-img">
+
+                        <img src="images/electric.jpg"
+                             alt="Electric Scooter">
+
+                    </div>
+
+                    <div class="vehicle-body">
+
+                        <span class="vehicle-type">
+                            Electric Scooter
+                        </span>
+
+                        <h4>
+                            Electric Ride X
+                        </h4>
+
+                        <div class="vehicle-info">
+
+                            <span>
+                                <i class="bi bi-lightning-charge"></i>
+                                Electric
+                            </span>
+
+                            <span>
+                                <i class="bi bi-battery-full"></i>
+                                120 KM
+                            </span>
+
+                            <span>
+                                <i class="bi bi-person"></i>
+                                2 Seats
+                            </span>
+
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center">
+
+                            <div class="price">
+                                ₹599
+                                <small>/ day</small>
+                            </div>
+
+                            <a href="#" class="btn btn-orange">
+                                Rent Now
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FEATURES ================= -->
+
+<section class="section bg-light">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>
+                Why Choose <span>RideGo?</span>
+            </h2>
+
+            <p>
+                Everything you need for a smooth ride.
+            </p>
+
+        </div>
+
+
+        <div class="row">
+
+            <div class="col-md-3">
+
+                <div class="feature-box">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-tag"></i>
+                    </div>
+
+                    <h4>Best Prices</h4>
+
+                    <p>
+                        Affordable rental plans with
+                        no hidden charges.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-3">
+
+                <div class="feature-box">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-shield-check"></i>
+                    </div>
+
+                    <h4>Safe & Secure</h4>
+
+                    <p>
+                        Well-maintained vehicles for
+                        a safe journey.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-3">
+
+                <div class="feature-box">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-clock"></i>
+                    </div>
+
+                    <h4>Quick Booking</h4>
+
+                    <p>
+                        Book your ride in just a
+                        few clicks.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-3">
+
+                <div class="feature-box">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-headset"></i>
+                    </div>
+
+                    <h4>24/7 Support</h4>
+
+                    <p>
+                        Our support team is always
+                        ready to help.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= REVIEWS ================= -->
+
+<section class="section reviews" id="reviews">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>
+                What Our <span>Customers Say</span>
+            </h2>
+
+            <p>
+                Thousands of happy riders trust us.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+
+            <!-- REVIEW 1 -->
+
+            <div class="col-lg-4">
+
+                <div class="review-card">
+
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+
+                    <p>
+                        "The booking process was extremely
+                        simple. The bike was clean and in
+                        excellent condition. Definitely
+                        using RideGo again!"
+                    </p>
+
+                    <div class="customer">
+
+                        <div class="customer-img">
+
+                            <!-- Replace image -->
+                            <img src="images/customer1.jpg"
+                                 alt="Customer">
+
+                        </div>
+
+                        <div>
+
+                            <h6>
+                                Rahul Menon
+                            </h6>
+
+                            <small>
+                                Kochi
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- REVIEW 2 -->
+
+            <div class="col-lg-4">
+
+                <div class="review-card">
+
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+
+                    <p>
+                        "I rented a scooter for three days
+                        while exploring the city. Great
+                        pricing and very friendly service."
+                    </p>
+
+                    <div class="customer">
+
+                        <div class="customer-img">
+
+                            <img src="images/customer2.jpg"
+                                 alt="Customer">
+
+                        </div>
+
+                        <div>
+
+                            <h6>
+                                Anjali Nair
+                            </h6>
+
+                            <small>
+                                Bangalore
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- REVIEW 3 -->
+
+            <div class="col-lg-4">
+
+                <div class="review-card">
+
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+
+                    <p>
+                        "Perfect service! I booked a Royal
+                        Enfield for a weekend trip and the
+                        entire experience was fantastic."
+                    </p>
+
+                    <div class="customer">
+
+                        <div class="customer-img">
+
+                            <img src="images/customer3.jpg"
+                                 alt="Customer">
+
+                        </div>
+
+                        <div>
+
+                            <h6>
+                                Arjun Kumar
+                            </h6>
+
+                            <small>
+                                Chennai
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CTA ================= -->
+
+<section class="cta">
+
+    <div class="container">
+
+        <h2>
+            Ready to <span>Ride?</span>
+        </h2>
+
+        <p>
+            Choose your vehicle, select your dates,
+            and hit the road. Your next adventure
+            is just one booking away.
+        </p>
+
+        <a href="#vehicles"
+           class="btn btn-orange">
+            Browse Vehicles
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer id="contact">
+
+    <div class="container">
+
+        <div class="row g-4">
+
+            <div class="col-md-4">
+
+                <h4>RideGo</h4>
+
+                <p>
+                    Your trusted bike and scooter
+                    rental partner. Ride freely,
+                    explore more.
+                </p>
+
+                <div class="social-icons">
+
+                    <a href="#">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="bi bi-twitter-x"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-2">
+
+                <h4>Quick Links</h4>
+
+                <ul>
+
+                    <li>Home</li>
+                    <li>Vehicles</li>
+                    <li>About Us</li>
+                    <li>Contact</li>
+
+                </ul>
+
+            </div>
+
+
+            <div class="col-md-3">
+
+                <h4>Services</h4>
+
+                <ul>
+
+                    <li>Bike Rental</li>
+                    <li>Scooter Rental</li>
+                    <li>Long Term Rental</li>
+                    <li>Corporate Rental</li>
+
+                </ul>
+
+            </div>
+
+
+            <div class="col-md-3">
+
+                <h4>Contact</h4>
+
+                <p>
+                    <i class="bi bi-geo-alt"></i>
+                    Kochi, Kerala
+                </p>
+
+                <p>
+                    <i class="bi bi-telephone"></i>
+                    +91 98765 43210
+                </p>
+
+                <p>
+                    <i class="bi bi-envelope"></i>
+                    hello@ridego.com
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            © 2026 RideGo. All Rights Reserved.
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- Bootstrap JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
